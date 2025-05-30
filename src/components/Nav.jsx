@@ -10,7 +10,7 @@ const Nav = () => {
 
   const closeNav = () => {
     document.body.classList.remove("menu__open");
-  };
+  };  //He he//
 
   return (
     <header className="transparent header-light scroll-light smaller">
