@@ -6,7 +6,7 @@ import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import MyCarousel from "../UI/MyCarousel.jsx";
+import MyCarousel from "../UI/MyCarousel.js";
 
 
 function HotCollections({ fetchUrl }) {
@@ -42,10 +42,7 @@ function HotCollections({ fetchUrl }) {
           </div>
           {cards.map((id) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
-              <div className="owl-carousel owl-theme owl-loaded owl-drag">
-                <div className="owl-stage-outer">
-                  <div className="owl-stage" width={235}>
-                    <div className="nft_coll">
+                                  <div className="nft_coll">
                       <div className="nft_wrap">
                         <Link to="/item-details">
                           <img
@@ -73,22 +70,7 @@ function HotCollections({ fetchUrl }) {
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="owl-nav">
-                  <button className="button" role="presentation">
-                    <div className="owl-prev">
-                      <span aria-label="Previous"></span>
-                    </div>
-                  </button>
-                  <button className="button" role="presentation">
-                    <div className="owl-next">
-                      <span aria-label="Next"></span>
-                    </div>
-                  </button>
-                </div>
-              </div>
-            </div>
-          ))}
+                  ))}
         </div>
       </div>
     </section>
