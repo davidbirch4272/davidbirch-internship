@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import MyCarousel from "../UI/MyCarousel";
+import MyCarousel from "../UI/Carousel";
 
 function HotCollections({ fetchUrl }) {
   const [cards, setCards] = useState([]);
@@ -18,16 +18,16 @@ function HotCollections({ fetchUrl }) {
     async function hotCollections() {
       try {
         const { data } = await axios.get(base_url);
-        setCards(data);
-
-        console.log(data);
+        setCards(data);        
       } catch (error) {
         console.log("Error fetching hot collections:", error);
+      }finally{        
       }
     }
+  hotCollections();
+  }, []);
 
-    hotCollections();
-  }, [base_url]);
+  if(!cards.length) return <div>No collections found</div>
 
   return (
     <section id="section-collections" className="no-bottom">
