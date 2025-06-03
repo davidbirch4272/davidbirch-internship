@@ -2,30 +2,29 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
-import axios from 'axios';
-
+import axios from "axios";
+import OwlCarousel from "react-owl-carousel";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import hotcollections from '../UI/'
 
 function HotCollections({ fetchUrl }) {
   const [cards, setCards] = useState([]);
 
-
-  const base_url = "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
+  const base_url =
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
   useEffect(() => {
     async function hotCollections() {
-      
       try {
-        
-        const { request } = await axios.get(base_url);
-        setCards(request.data.results);
-        
-        setCards(request)
-        console.log(request)
+        const { data } = await axios.get(base_url);
+        setCards(data);
+
+        console.log(data);
       } catch (error) {
         console.log("Error fetching hot collections:", error);
       }
-          }
-
+    }
 
     hotCollections();
   }, [base_url]);
@@ -42,31 +41,57 @@ function HotCollections({ fetchUrl }) {
           </div>
           {cards.map((id) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
-            <div className="nft_coll">
-            <div className="nft_wrap">
-            <Link to="/item-details">
-            <img src={id.nftImage} className="lazy img-fluid" alt="" />
-            </Link>
-            </div>
-            <div className="nft_coll_pp">
-            <Link to="/author">
-            <img className="lazy pp-coll" src={id.AuthorImage} alt="" />
-            </Link>
-            <i className="fa fa-check"></i>
-            </div> 
-            <div className="nft_coll_info">
-            <Link to="/explore">
-            <h4>{id.title}</h4>
-            </Link>
-            <span>{id.code}</span>
-            </div>
-            </div>
+              <div className="owl-carousel owl-theme owl-loaded owl-drag">
+                <div className="owl-stage-outer">
+                  <div className="owl-stage" width={235}>
+                    <div className="nft_coll">
+                      <div className="nft_wrap">
+                        <Link to="/item-details">
+                          <img
+                            src={id.nftImage}
+                            className="lazy img-fluid"
+                            alt=""
+                          />
+                        </Link>
+                      </div>
+                      <div className="nft_coll_pp">
+                        <Link to="/author">
+                          <img
+                            src={id.authorImage}
+                            className="lazy pp-coll"
+                            alt=""
+                          />
+                        </Link>
+                        <i className="fa fa-check"></i>
+                      </div>
+                      <div className="nft_coll_info">
+                        <Link to="/explore">
+                          <h4>{id.title}</h4>
+                        </Link>
+                        <span>{id.code}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="owl-nav">
+                  <button className="button" role="presentation">
+                    <div className="owl-prev">
+                      <span aria-label="Previous"></span>
+                    </div>
+                  </button>
+                  <button className="button" role="presentation">
+                    <div className="owl-next">
+                      <span aria-label="Next"></span>
+                    </div>
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-};
+}
 
 export default HotCollections;

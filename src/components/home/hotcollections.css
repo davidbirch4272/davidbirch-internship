@@ -1,0 +1,11 @@
+.owl-carousel {
+    width: 25%;
+    transition: ease;
+    width: auto;
+    backface-visibility:hidden;
+        touch-action: cross-slide-x;
+
+    
+
+
+}
