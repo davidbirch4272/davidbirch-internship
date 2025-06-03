@@ -6,8 +6,7 @@ import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
-import MyCarousel from "../UI/MyCarousel.js";
-
+import MyCarousel from "../UI/MyCarousel";
 
 function HotCollections({ fetchUrl }) {
   const [cards, setCards] = useState([]);
@@ -40,37 +39,39 @@ function HotCollections({ fetchUrl }) {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {cards.map((id) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
-                                  <div className="nft_coll">
-                      <div className="nft_wrap">
-                        <Link to="/item-details">
-                          <img
-                            src={id.nftImage}
-                            className="lazy img-fluid"
-                            alt=""
-                          />
-                        </Link>
-                      </div>
-                      <div className="nft_coll_pp">
-                        <Link to="/author">
-                          <img
-                            src={id.authorImage}
-                            className="lazy pp-coll"
-                            alt=""
-                          />
-                        </Link>
-                        <i className="fa fa-check"></i>
-                      </div>
-                      <div className="nft_coll_info">
-                        <Link to="/explore">
-                          <h4>{id.title}</h4>
-                        </Link>
-                        <span>{id.code}</span>
-                      </div>
-                    </div>
+          <MyCarousel>
+            {cards.map((id) => (
+              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={id}>
+                <div className="nft_coll">
+                  <div className="nft_wrap">
+                    <Link to="/item-details">
+                      <img
+                        src={id.nftImage}
+                        className="lazy img-fluid"
+                        alt=""
+                      />
+                    </Link>
                   </div>
-                  ))}
+                  <div className="nft_coll_pp">
+                    <Link to="/author">
+                      <img
+                        src={id.authorImage}
+                        className="lazy pp-coll"
+                        alt=""
+                      />
+                    </Link>
+                    <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info">
+                    <Link to="/explore">
+                      <h4>{id.title}</h4>
+                    </Link>
+                    <span>{id.code}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </MyCarousel>
         </div>
       </div>
     </section>

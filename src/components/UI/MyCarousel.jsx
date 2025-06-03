@@ -1,8 +1,7 @@
-import './App.css';
 import 'owl.carousel/dist/assets/owl.carousel.css';
 import 'owl.carousel/dist/assets/owl.theme.default.css';
 import React from 'react';
-import ReactOwlCarousel from 'react-owl-carousel';
+import OwlCarousel from 'react-owl-carousel';
 
 
 const MyCarousel = () => {
@@ -27,8 +26,8 @@ const MyCarousel = () => {
     
     <div>
 
-    <h1>Carousel in React</h1>
-    <OwlCarousel className="owl-theme" {...options}>
+        <OwlCarousel className="owl-theme" {...options}>
+            
      
     </OwlCarousel>
 
