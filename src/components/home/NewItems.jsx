@@ -1,10 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import nftImage from "../../images/nftImage.jpg";
+import axios from "axios";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel/dist/assets/owl.theme.default.css";
+import Carousel from "../UI/Carousel";
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+import "../../css/styles/style.css";
 
-const NewItems = () => {
-  return (
+
+function NewItems({ fetchUrl }) {
+  const [cards, setCards] = useState([]);
+  const [Loading, setLoading] = useState(true);
+  
+  const base_url =
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
+
+  useEffect(() => {
+    async function newItems() {
+      try {
+        const { data } = await axios.get(base_url);
+        setCards(data);
+        setTimeout(() => {
+          setLoading(false);
+        }, 4000);
+        console.log(data);
+        } catch (error) {
+          console.log("Error fetching hot collections:", error);
+          setLoading(false);
+        } finally {
+        }
+      }
+      
+    newItems();
+  }, []);
+
+  if (!cards.length) return <div>No collections found.</div>;
+
+  const options = {
+    defaultitemwidth: 1535,
+  }
+ 
+  
+ return (
     <section id="section-items" className="no-bottom">
       <div className="container">
         <div className="row">
@@ -14,8 +54,9 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {new Array(4).fill(0).map((_, index) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+          <Carousel {...options}>
+          {cards.map((item) => (
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
               <div className="nft__item">
                 <div className="author_list_pp">
                   <Link
@@ -23,8 +64,8 @@ const NewItems = () => {
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
-                  >
-                    <img className="lazy" src={AuthorImage} alt="" />
+                    >
+                    <img className="lazy" src={item.authorImage} alt="" />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
@@ -51,25 +92,26 @@ const NewItems = () => {
 
                   <Link to="/item-details">
                     <img
-                      src={nftImage}
+                      src={item.nftImage}
                       className="lazy nft__item_preview"
                       alt=""
-                    />
+                      />
                   </Link>
                 </div>
                 <div className="nft__item_info">
                   <Link to="/item-details">
-                    <h4>Pinky Ocean</h4>
+                    <h4>{item.title}</h4>
                   </Link>
-                  <div className="nft__item_price">3.08 ETH</div>
+                  <div className="nft__item_price">{item.price} ETH</div>
                   <div className="nft__item_like">
                     <i className="fa fa-heart"></i>
-                    <span>69</span>
+                    <span>{item.likes}</span>
                   </div>
                 </div>
               </div>
             </div>
           ))}
+          </Carousel>
         </div>
       </div>
     </section>
