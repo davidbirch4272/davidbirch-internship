@@ -11,10 +11,8 @@ import "../../css/styles/style.css";
 
 function HotCollections({ fetchUrl }) {
   const [cards, setCards] = useState([]);
-  const [loading, setloading] = useState(true);
-  const displaycount = Array(4).fill(null);
-
-
+  const [Loading, setLoading] = useState(true);
+  
   const base_url =
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections";
 
@@ -23,14 +21,16 @@ function HotCollections({ fetchUrl }) {
       try {
         const { data } = await axios.get(base_url);
         setCards(data);
-        setloading(false);
+        setTimeout(() => {
+          setLoading(false);
+        }, 4000);
         } catch (error) {
-        console.log("Error fetching hot collections:", error);
-        setloading(false);
-      } finally {
+          console.log("Error fetching hot collections:", error);
+          setLoading(false);
+        } finally {
+        }
       }
-    }
-  
+      
     hotCollections();
   }, []);
 
@@ -45,7 +45,7 @@ function HotCollections({ fetchUrl }) {
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
-            {loading ? (
+            {Loading ? (
               <>
                 <Carousel>
                   {new Array(4).fill(0).map((__, index) => (
