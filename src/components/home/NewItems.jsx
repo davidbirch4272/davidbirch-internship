@@ -49,10 +49,10 @@ function NewItems({ fetchUrl }) {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Carousel>
+         <Carousel>
           {cards.map((item) => (
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
-              <div className="nft__item">
+            <div className="">
+              <div className="nft__item" key={item.id}>
                 <div className="author_list_pp">
                   <Link
                     to="/author"
@@ -107,7 +107,7 @@ function NewItems({ fetchUrl }) {
             </div>
           ))}
           </Carousel>
-        </div>
+           </div>
       </div>
     </section>
   );
