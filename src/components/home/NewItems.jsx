@@ -38,11 +38,6 @@ function NewItems({ fetchUrl }) {
   }, []);
 
   if (!cards.length) return <div>No collections found.</div>;
-
-  const options = {
-    defaultitemwidth: 1535,
-  }
- 
   
  return (
     <section id="section-items" className="no-bottom">
@@ -54,8 +49,7 @@ function NewItems({ fetchUrl }) {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Carousel {...options}>
-          
+          <Carousel>
           {cards.map((item) => (
             <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={item.id}>
               <div className="nft__item">
