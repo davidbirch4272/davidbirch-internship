@@ -9,7 +9,7 @@ import Carousel from "../UI/Carousel";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import "../../css/styles/style.css";
-import NFTTimerWrapper from "../UI/NFTTimerWrapper.jsx";
+import Time from "../UI/Time.jsx";
 
 function NewItems({ fetchUrl }) {
   const [cards, setCards] = useState([]);
@@ -123,7 +123,7 @@ function NewItems({ fetchUrl }) {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown"><NFTTimerWrapper/></div>
+                <div className="de_countdown"><Time nft={item}/></div>
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">

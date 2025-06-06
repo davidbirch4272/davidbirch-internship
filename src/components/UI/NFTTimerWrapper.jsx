@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Time from "./Time"; 
+ 
 
 const NFTTimerWrapper = () => {
   const [nft, setNft] = useState(null);
