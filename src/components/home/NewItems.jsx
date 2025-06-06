@@ -9,11 +9,12 @@ import Carousel from "../UI/Carousel";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import "../../css/styles/style.css";
-
+import NFTTimerWrapper from "../UI/NFTTimerWrapper.jsx";
 
 function NewItems({ fetchUrl }) {
   const [cards, setCards] = useState([]);
   const [Loading, setLoading] = useState(true);
+  
   
   const base_url =
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
@@ -26,7 +27,6 @@ function NewItems({ fetchUrl }) {
         setTimeout(() => {
           setLoading(false);
         }, 4000);
-        console.log(data);
         } catch (error) {
           console.log("Error fetching hot collections:", error);
           setLoading(false);
@@ -49,10 +49,12 @@ function NewItems({ fetchUrl }) {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-         <Carousel>
-          {cards.map((item) => (
+          {Loading  ? (
+            <>
+            <Carousel>
+            {new Array(4).fill(0).map((__, index) => (
             <div className="">
-              <div className="nft__item" key={item.id}>
+               <div className="nft__item" key={index}>
                 <div className="author_list_pp">
                   <Link
                     to="/author"
@@ -60,12 +62,13 @@ function NewItems({ fetchUrl }) {
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
                     >
-                    <img className="lazy" src={item.authorImage} alt="" />
+                    <img className="lazy"  />
+                    <Skeleton width={50} height={50} borderRadius={99} />
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
-
+                <div className="de_countdown"></div>
+                <Skeleton height={20} width="100%" />
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
@@ -84,7 +87,61 @@ function NewItems({ fetchUrl }) {
                       </div>
                     </div>
                   </div>
+                  <Link to="/item-details">
+                    <img className="lazy nft__item_preview"/>
+                    <Skeleton width={282} height={270} />
+                  </Link>
+                </div>
+                <div className="nft__item_info">
+                  <Link to="/item-details">
+                    <h4></h4>
+                  </Link>
+                  <div className="nft__item_price"><Skeleton height={20} width="40%" /></div>
+                    <Skeleton height={20} width="100%" />
+                  <div className="nft__item_like">                    
+                  </div>
+                </div>
+              </div>
+            </div>            
+            ))}
+            </Carousel>
+            </>
 
+          ):(            
+          <Carousel>
+          {cards.map((item) => (
+            <div className="">
+              <div className="nft__item" key={item.id}>
+                <div className="author_list_pp">
+                  <Link
+                    to="/author"
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Creator: Monica Lucas"
+                    >
+                    <img className="lazy" src={item.authorImage} alt="" />
+                    <i className="fa fa-check"></i>
+                  </Link>
+                </div>
+                <div className="de_countdown"><NFTTimerWrapper/></div>
+                <div className="nft__item_wrap">
+                  <div className="nft__item_extra">
+                    <div className="nft__item_buttons">
+                      <button>Buy Now</button>
+                      <div className="nft__item_share">
+                        <h4>Share</h4>
+                        <a href="" target="_blank" rel="noreferrer">
+                          <i className="fa fa-facebook fa-lg"></i>
+                        </a>
+                        <a href="" target="_blank" rel="noreferrer">
+                          <i className="fa fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="">
+                          <i className="fa fa-envelope fa-lg"></i>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                   <Link to="/item-details">
                     <img
                       src={item.nftImage}
@@ -107,6 +164,7 @@ function NewItems({ fetchUrl }) {
             </div>
           ))}
           </Carousel>
+        )}
            </div>
       </div>
     </section>
