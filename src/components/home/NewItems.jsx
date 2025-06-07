@@ -28,7 +28,7 @@ function NewItems({ fetchUrl }) {
           setLoading(false);
         }, 4000);
         } catch (error) {
-          console.log("Error fetching hot collections:", error);
+          console.log("Error fetching new items:", error);
           setLoading(false);
         } finally {
         }
