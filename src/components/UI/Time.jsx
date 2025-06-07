@@ -6,6 +6,7 @@ const Time = ({ nft }) => {
     minutesLeft: 0,
     hoursLeft: 0,
     displayTimer: false,
+    isExpired: false,
   });
 
   const updateTimer = () => {
@@ -14,12 +15,14 @@ const Time = ({ nft }) => {
 
     const millisLeft = expiryDate - Date.now();
     const displayTimer = millisLeft > 0;
+    const isExpired = millisLeft <=0;
 
     setTimeLeft({
       secondsLeft: Math.floor(millisLeft / 1000) % 60,
       minutesLeft: Math.floor(millisLeft / (1000 * 60)) % 60,
       hoursLeft: Math.floor(millisLeft / (1000 * 60 * 60)),
       displayTimer,
+      isExpired,
     });
   };
 
@@ -31,11 +34,13 @@ const Time = ({ nft }) => {
 
   return (
     <>
-      {timeLeft.displayTimer && (
+      {timeLeft.displayTimer ? (
         <div className="de_countdown">
           {`${timeLeft.hoursLeft}h ${timeLeft.minutesLeft}m ${timeLeft.secondsLeft}s`}
         </div>
-      )}
+      ) : timeLeft.isExpired ? (
+        <div className="de_countdown">Expired</div>
+      ) : null}
     </>
   );
 };
