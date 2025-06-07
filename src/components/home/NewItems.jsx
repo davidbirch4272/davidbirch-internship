@@ -67,7 +67,6 @@ function NewItems({ fetchUrl }) {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown"></div>
                 <Skeleton height={20} width="100%" />
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
