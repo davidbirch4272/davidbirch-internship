@@ -3,6 +3,57 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 
 const TopSellers = () => {
+ 
+function NewItems({ fetchUrl }) {
+  const [cards, setCards] = useState([]);
+  const [Loading, setLoading] = useState(true);
+  
+  
+  const base_url =
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems";
+
+  useEffect(() => {
+    async function newItems() {
+      try {
+        const { data } = await axios.get(base_url);
+        setCards(data);
+        setTimeout(() => {
+          setLoading(false);
+          console.log(data);
+        }, 4000);
+        } catch (error) {
+          console.log("Error fetching hot collections:", error);
+          setLoading(false);
+        } finally {
+        }
+      }
+      
+    newItems();
+  }, []);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
