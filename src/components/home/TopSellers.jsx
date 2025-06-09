@@ -19,7 +19,6 @@ const TopSellers = () => {
         setCards(data);
         setTimeout(() => {
         setLoading(false);
-        console.log(data)
         }, 4000);
         } catch (error) {
           console.log("Error fetching top sellers:", error);
