@@ -8,7 +8,6 @@ const TopSellers = () => {
   const [cards, setCards] = useState([]);
   const [Loading, setLoading] = useState(true);
   
-  
   const base_url =
     "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers";
 
