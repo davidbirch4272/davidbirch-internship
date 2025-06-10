@@ -28,7 +28,7 @@ const ExploreItems = ({ fethURL }) => {
       return [];
     }
   }
-
+you are a knucklehead.....
   useEffect(() => {
     async function applyFilter() {
       setLoading(true);
