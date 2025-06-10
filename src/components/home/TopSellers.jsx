@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 
-const TopSellers = () => {
+const TopSellers = ({ fethURL}) => {
   const [cards, setCards] = useState([]);
   const [Loading, setLoading] = useState(true);
   
