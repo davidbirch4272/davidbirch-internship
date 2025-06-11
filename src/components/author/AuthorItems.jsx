@@ -27,7 +27,6 @@ const AuthorItems = () => {
       } finally {
       }
     }
-jjjjjjj
 
     fetchAuthor();
   }, [authorId]);
