@@ -20,10 +20,10 @@ const AuthorItems = () => {
 
         setAuthor(data);
         setTimeout(() => {
-          setLoading(false);
+        setLoading(false);
         }, 10);
       } catch (err) {
-        console.error("Failed to load item", err);
+        console.error("Failed to load items", err);
       } finally {
       }
     }
@@ -37,7 +37,7 @@ const AuthorItems = () => {
         <div className="row">
           {Loading ? (
             <>
-              {new Array(4).fill(0).map((__, index) => (
+              {new Array(8).fill(0).map((__, index) => (
                 <div
                   className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
                   key={index}

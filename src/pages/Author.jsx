@@ -22,10 +22,9 @@ const Author = () => {
         setAuthor(data);
         setTimeout(() => {  
         setLoading(false);        
-        }, 500);
-      console.log(data);
+        }, 500);      
       } catch (err) {
-        console.error("Failed to load item", err);
+        console.error("Failed to load author", err);
       } finally {
       }
       }    
