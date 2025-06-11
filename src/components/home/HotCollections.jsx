@@ -7,6 +7,7 @@ import Carousel from "../UI/Carousel";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import "../../css/styles/style.css";
+import AuthorItems from "../author/AuthorItems";
 
 
 function HotCollections({ fetchUrl }) {
@@ -86,7 +87,7 @@ function HotCollections({ fetchUrl }) {
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${item.authorId}`}>
                         <img
                           src={item.authorImage}
                           className="lazy pp-coll"

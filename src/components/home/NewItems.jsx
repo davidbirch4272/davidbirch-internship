@@ -26,7 +26,8 @@ function NewItems({ fetchUrl }) {
         setCards(data);
         setTimeout(() => {
           setLoading(false);
-        }, 4000);
+        }, 4000);    
+        console.log(data)    
         } catch (error) {
           console.log("Error fetching new items:", error);
           setLoading(false);
@@ -113,7 +114,7 @@ function NewItems({ fetchUrl }) {
               <div className="nft__item" key={item.id}>
                 <div className="author_list_pp">
                   <Link
-                    to="/author"
+                    to={`/author/${item.authorId}`}
                     data-bs-toggle="tooltip"
                     data-bs-placement="top"
                     title="Creator: Monica Lucas"
