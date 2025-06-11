@@ -21,7 +21,7 @@ const AuthorItems = () => {
         setAuthor(data);
         setTimeout(() => {
           setLoading(false);
-        }, 5);
+        }, 10);
       } catch (err) {
         console.error("Failed to load item", err);
       } finally {
