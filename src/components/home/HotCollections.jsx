@@ -83,7 +83,7 @@ function HotCollections({ fetchUrl }) {
                           src={item.nftImage}
                           className="lazy img-fluid"
                           alt=""
-                        />
+                        />  
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
