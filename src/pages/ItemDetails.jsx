@@ -7,33 +7,30 @@ import axios from "axios";
 
 const ItemDetails = () => {
   const { nftId } = useParams();
-  const [items, setItems] = useState(null);
+  const [items, setItems] = useState({});
   const [Loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []); //Set Stopper here//
-
-  useEffect(() => {
-    async function fetchNft() {
-      try {
-        const { data } = await axios.get(
-          `https://us-central1-nft-cloud-functions.cloudfunctions.net/ItemsDetails?nftId=${nftId}`
-        );
+ async function fetchNft() {
+    try {
+      const { data } = await axios.get(
+        `https://us-central1-nft-cloud-functions.cloudfunctions.net/ItemsDetails?nftId=${nftId}`
+      );
         setItems(data);
         console.log(data);
       } catch (err) {
-        console.error("Failed to load NFT", err);
+        console.error(err);
       } finally {
         setTimeout(() => {
           setLoading(false);
         }, 500);
       }
     }
-
+    
+    useEffect(() => {
+    window.scrollTo(0, 0);   
     fetchNft();
   }, [nftId]);
-
+  
   if (!nftId) return <div>NFT not found.</div>;
 
   return (
