@@ -26,8 +26,7 @@ function NewItems({ fetchUrl }) {
         setCards(data);
         setTimeout(() => {
           setLoading(false);
-        }, 4000);    
-        console.log(data)    
+        }, 4000);             
         } catch (error) {
           console.log("Error fetching new items:", error);
           setLoading(false);
