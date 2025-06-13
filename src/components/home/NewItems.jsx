@@ -92,7 +92,7 @@ function NewItems({ fetchUrl }) {
                   </Link>
                 </div>
                 <div className="nft__item_info">
-                  <Link to={`/item-details/${item.nftId}`}>
+                  <Link to="/item-details/">
                     <h4></h4>
                   </Link>
                   <div className="nft__item_price"><Skeleton height={20} width="40%" /></div>
