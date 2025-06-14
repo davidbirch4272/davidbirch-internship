@@ -44,16 +44,7 @@ const TopSellers = ({ fethURL }) => {
           </div>
           {Loading ? (
             <>
-              <div
-                className="col-md-12"
-                data-aos-offset="500"
-                data-aos-delay="100"
-                data-aos-duration="3000"
-                data-aos-easing="ease-in-out"
-                data-aos-mirror="true"
-                data-aos-once="false"
-                data-aos-anchor-placement="center"
-              >
+              <div className="col-md-12">                
                 <ol className="author_list">
                   {new Array(12).fill(0).map((__, index) => (
                     <li key={index}>
@@ -79,7 +70,15 @@ const TopSellers = ({ fethURL }) => {
             </>
           ) : (
             <div className="col-md-12">
-              <ol className="author_list">
+              <ol className="author_list"
+                data-aos-offset="500"
+                data-aos-delay="100"
+                data-aos-duration="3000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="true"
+                data-aos-once="false"
+                data-aos-anchor-placement="center"
+                >
                 {cards.map((item) => (
                   <li key={item.id}>
                     <div className="author_list_pp">
