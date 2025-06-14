@@ -10,6 +10,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import "../../css/styles/style.css";
 import Time from "../UI/Time.jsx";
+import 'aos/dist/aos.css';
 
 function NewItems({ fetchUrl }) {
   const [cards, setCards] = useState([]);
@@ -42,7 +43,15 @@ function NewItems({ fetchUrl }) {
  return (
     <section id="section-items" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row"
+        data-aos="fade-in"
+                data-aos-offset="10"
+                data-aos-delay="100"
+                data-aos-duration="2000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="true"
+                data-aos-once="true"
+                data-aos-anchor-placement="center">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>New Items</h2>

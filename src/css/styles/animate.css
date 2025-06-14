@@ -3338,3 +3338,23 @@
   -webkit-animation-name: slideOutUp;
   animation-name: slideOutUp;
 }
+
+
+.my-custom-fade[data-aos="fade-up"] {
+  transform: translateY(5px); 
+}
+
+.my-custom-fade[data-aos="fade-up"].aos-animate {
+  transform: translateY(0); 
+}
+
+.fade-special {
+  animation: fadeIn 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeSpecial {
+  to {
+    opacity: 1;
+  }
+}
