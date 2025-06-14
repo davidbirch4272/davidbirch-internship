@@ -71,9 +71,10 @@ const TopSellers = ({ fethURL }) => {
           ) : (
             <div className="col-md-12">
               <ol className="author_list"
-                data-aos-offset="500"
+                data-aos="fade-in"
+                data-aos-offset="10"
                 data-aos-delay="100"
-                data-aos-duration="3000"
+                data-aos-duration="2000"
                 data-aos-easing="ease-in-out"
                 data-aos-mirror="true"
                 data-aos-once="false"
