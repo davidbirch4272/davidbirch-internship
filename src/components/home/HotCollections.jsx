@@ -8,7 +8,7 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import "../../css/styles/style.css";
 import AuthorItems from "../author/AuthorItems";
-
+import 'aos/dist/aos.css'; 
 
 function HotCollections({ fetchUrl }) {
   const [cards, setCards] = useState([]);
@@ -40,7 +40,16 @@ function HotCollections({ fetchUrl }) {
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row"> 
+        <div className="row"
+                data-aos="fade-in"
+                data-aos-offset="10"
+                data-aos-delay="100"
+                data-aos-duration="2000"
+                data-aos-easing="ease-in-out"
+                data-aos-mirror="true"
+                data-aos-once="true"
+                data-aos-anchor-placement="center"
+> 
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>

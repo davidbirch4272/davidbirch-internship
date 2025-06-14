@@ -6,6 +6,8 @@ import axios from "axios";
 import Time from "../UI/Time.jsx";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ExploreItems = ({ fethURL }) => {
   const [cards, setCards] = useState([]);
@@ -37,9 +39,26 @@ const ExploreItems = ({ fethURL }) => {
       setVisibleCount(8);
       setLoading(false);
     }
-
     applyFilter();
   }, [filter]);
+
+  useEffect(() => {
+    AOS.init({
+      offset: 0,
+      duration: 500,
+      easing: "ease-in-out",
+      mirror: true,
+      once: true,
+    });
+  }, []);
+
+  useEffect(() => {
+         const timeout = setTimeout(() => {
+      AOS.refreshHard();  
+    }, 300);
+  
+    return () => clearTimeout(timeout);
+  }, [cards,]);
 
   const handleLoadMore = () => {
     setVisibleCount((prev) => prev + 4);
@@ -47,7 +66,7 @@ const ExploreItems = ({ fethURL }) => {
 
   return (
     <>
-      <div>
+      <div data-aos="fade-in" data-aos-duration="800" data-aos-delay="100">
         <select
           id="filter-items"
           defaultValue=""
@@ -121,11 +140,14 @@ const ExploreItems = ({ fethURL }) => {
           ))}
         </>
       ) : (
-        cards.slice(0, visibleCount).map((item) => (
+        cards.slice(0, visibleCount).map((item, index) => (
           <div
             key={item.id}
-            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+            className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12 fade-special"
             style={{ display: "block", backgroundSize: "cover" }}
+            data-aos="fade-in"
+            data-aos-anchor-placement="center"
+            data-aos-delay={(index % 4) * 100}
           >
             <div className="nft__item">
               <div className="author_list_pp">
@@ -180,7 +202,17 @@ const ExploreItems = ({ fethURL }) => {
         ))
       )}
       {!Loading && visibleCount < cards.length && (
-        <div className="col-md-12 text-center">
+        <div
+          className="col-md-12 text-center"
+          data-aos="fade-in"
+          data-aos-offset="1"
+          data-aos-delay="500"
+          data-aos-duration="500"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="true"
+          data-aos-anchor-placement="center"
+        >
           <Link
             to=""
             id="loadmore"
